@@ -19,7 +19,7 @@ Dieses Repository ist ein Fork von [abizovnuralem/go2_ros2_sdk](https://github.c
 Repository klonen und in sein Verzeichnis navigieren:
 
 ```bash
-git@github.com:hse-digital-engineering/ros2_unitree.git 
+git clone git@github.com:hse-digital-engineering/ros2_unitree.git 
 cd ros2_unitree
 ```
 
@@ -27,7 +27,7 @@ Docker-Container bauen:
 
 ```bash
 cd docker
-docker build -t ros2_go2 ..
+docker build -f Dockerfile -t ros2_go2 ..
 ```
 
 Nun kann der Docker-Container mit dem Startskript `run.sh` gestartet und betreten werden.

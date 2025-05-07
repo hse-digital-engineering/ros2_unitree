@@ -3,7 +3,7 @@ aiohttp
 paho-mqtt
 python-dotenv
 numpy<2.0.0
-open3d
+# open3d
 torch
 torchvision
 pycryptodome

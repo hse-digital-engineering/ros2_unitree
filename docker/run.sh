@@ -3,7 +3,7 @@
 xhost +local:root
 
 docker run -it --rm \
-    -p 8765:8765 \
+    --network host \
     --env DISPLAY=$DISPLAY \
     --env XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
     --volume /tmp/.X11-unix:/tmp/.X11-unix \
