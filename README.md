@@ -1,4 +1,62 @@
+# Info
+
+Dieses Repository ist ein Fork von [abizovnuralem/go2_ros2_sdk](https://github.com/abizovnuralem/go2_ros2_sdk) und dient als Grundlage für den ROS 2 Stack für die Informatik-Vorlesungen der HS-Esslingen. 
+
+## Features
+
+- Plattformunabhängiges Setup via Docker
+- ROS2-Workspace wird als Bind-Mount vom Host in den Container eingebunden und synchronisiert.
+  - Damit kann Code lokal entwickelt und direkt im Container getestet werden. 
+  - Ermöglicht einfachen Datentransfer zwischen Host und Container
+- Grafische Simulationsumgebung mit RViz2
+- Unitree Go2 SDK ([abizovnuralem/go2_ros2_sdk](https://github.com/abizovnuralem/go2_ros2_sdk))
+  - Updates im Orginal-Repository können einfach synchronisiert werden
+
 ![Ros2 SDK](https://github.com/abizovnuralem/go2_ros2_sdk/assets/33475993/49edebbe-11b6-49c6-b82d-bc46257674bd)
+
+## Inbetriebnahme
+
+Repository klonen und in sein Verzeichnis navigieren:
+
+```bash
+git@github.com:hse-digital-engineering/ros2_unitree.git 
+cd ros2_unitree
+```
+
+Docker-Container bauen:
+
+```bash
+cd docker
+docker build -t ros2_go2 ..
+```
+
+Nun kann der Docker-Container mit dem Startskript `run.sh` gestartet und betreten werden.
+
+```bash
+./run.sh
+```
+
+## Simulationsumgebung starten
+
+Befindet man sich im Container, kann mit folgendem Kommando eine RViz2-Konfiguration gestartet werden:
+
+```bash
+ros2 launch go2_robot_sdk robot.launch.py
+```
+
+## Workflow
+
+Die Arbeit an dem Workspace erfolgt im gemounteten Verzeichnis `ros2_ws/src`. Jedes ROS2-Package bekommt dort sein eigenes Unterverzeichnis. Der Code kann lokal entwickelt werden, z.B. via VSCode. 
+
+Nach jeder Änderung wird der Code im Container mithilfe von `colcon` neu gebaut (damit vorgenommene Änderungen wirksam werden). Dies muss im Verzeichnis `ros2_ws` erfolgen:
+
+```
+colcon build
+```
+
+## Autor / Maintainer
+
+Marco Dittmann [marco.dittmann@hs-esslingen.de](marco.dittmann@hs-esslingen.de)
 
 # Welcome to the Unitree Go2 ROS2 SDK Project!
 

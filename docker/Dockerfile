@@ -1,4 +1,9 @@
-FROM ros:humble-ros-base
+ARG ROS_DISTRO="jazzy"
+FROM ros:${ROS_DISTRO}-ros-base 
+
+#RUN apt-get update && apt-get install -y \
+#    ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
+#    ros-${ROS_DISTRO}-rosidl-generator-dds-idl
 
 # Install basic requirements
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -6,24 +11,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gnupg2 \
     lsb-release \
     python3-pip \
+    python3-venv \
     portaudio19-dev \
     mesa-utils \
-    libgl1-mesa-glx \
+    libgl1 \
+    libglx-mesa0 \
     libgl1-mesa-dri \
-    ros-humble-rviz2 \
+    ros-${ROS_DISTRO}-rviz2 \
+    ros-${ROS_DISTRO}-joint-state-publisher-gui \
     software-properties-common
-
-# Install specific numpy version first
-RUN pip install 'numpy<2.0.0'
 
 # Create workspace
 WORKDIR /ros2_ws
 
 # Clone the repository with submodules
-COPY . /ros2_ws/src
+COPY ros2_ws /ros2_ws
 
 # Install Python requirements (with numpy constraint)
-RUN cd src && pip install -r requirements.txt
+RUN python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 
 # Install ROS dependencies
 RUN . /opt/ros/${ROS_DISTRO}/setup.sh && \
@@ -42,9 +47,6 @@ ENV ROBOT_IP=""
 ENV CONN_TYPE="webrtc"
 ENV WEBRTC_SERVER_HOST="0.0.0.0"
 ENV WEBRTC_SERVER_PORT="9991"
-
-# Remove apt cache
-RUN rm -rf /var/lib/apt/lists/*
 
 # add /ros2_ws to the entrypoint
 RUN sed --in-place --expression \
