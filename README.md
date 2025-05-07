@@ -5,6 +5,7 @@ Dieses Repository ist ein Fork von [abizovnuralem/go2_ros2_sdk](https://github.c
 ## Features
 
 - Plattformunabhängiges Setup via Docker
+- ROS 2 Jazzy (oder andere konfigurierbare ROS 2 Distro)
 - ROS2-Workspace wird als Bind-Mount vom Host in den Container eingebunden und synchronisiert.
   - Damit kann Code lokal entwickelt und direkt im Container getestet werden. 
   - Ermöglicht einfachen Datentransfer zwischen Host und Container
@@ -43,6 +44,14 @@ Befindet man sich im Container, kann mit folgendem Kommando eine RViz2-Konfigura
 ```bash
 ros2 launch go2_robot_sdk robot.launch.py
 ```
+
+### Visualisierung mit Foxglove Studio
+
+Im Webbrowser [https://studio.foxglove.dev](https://studio.foxglove.dev) aufrufen und mit dem Port verbinden: `ws://localhost:8765`. 
+Die ROS-Messages sollten nun auftauchen. Das Robotermodell kann angezeigt werden in dem man in der linken Leiste einen Custom Layer `URDF` hinzufügt. Als Source wählt man `Topic` und als Topic wählt man `/robot_description` aus.
+
+![](doc_images/foxglove.png)
+
 
 ## Workflow
 
