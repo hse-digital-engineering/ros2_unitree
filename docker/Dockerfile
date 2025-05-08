@@ -1,10 +1,6 @@
 ARG ROS_DISTRO="jazzy"
 FROM ros:${ROS_DISTRO}-ros-base 
 
-#RUN apt-get update && apt-get install -y \
-#    ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
-#    ros-${ROS_DISTRO}-rosidl-generator-dds-idl
-
 # Install basic requirements
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
@@ -19,6 +15,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1-mesa-dri \
     ros-${ROS_DISTRO}-rviz2 \
     ros-${ROS_DISTRO}-joint-state-publisher-gui \
+    ros-${ROS_DISTRO}-gz-tools-vendor \
+    ros-${ROS_DISTRO}-gz-sim-vendor \
+    ros-${ROS_DISTRO}-turtlebot4-simulator \
+    ros-${ROS_DISTRO}-irobot-create-nodes \
     software-properties-common
 
 # Create workspace
