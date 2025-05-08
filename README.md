@@ -53,6 +53,16 @@ Die ROS-Messages sollten nun auftauchen. Das Robotermodell kann angezeigt werden
 ![](doc_images/foxglove.png)
 
 
+## Gazebo
+
+Der Container enthält die Gazebo-Simulationsumgebung. Eine Demo kann gestartet werden mit:
+
+```bash
+ros2 launch turtlebot4_gz_bringup turtlebot4_gz.launch.py
+```
+
+![](doc_images/gazebo.png)
+
 ## Workflow
 
 Die Arbeit an dem Workspace erfolgt im gemounteten Verzeichnis `ros2_ws/src`. Jedes ROS2-Package bekommt dort sein eigenes Unterverzeichnis. Der Code kann lokal entwickelt werden, z.B. via VSCode. 
